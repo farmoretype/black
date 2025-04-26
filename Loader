@@ -1,28 +1,25 @@
--- Make Everything Black for FPS Boost
-
--- FUNCTION:
 local function simplify(part)
     if part:IsA("BasePart") then
-        part.Material = Enum.Material.SmoothPlastic -- simple material
-        part.Color = Color3.new(0, 0, 0) -- full black
+        part.Material = Enum.Material.SmoothPlastic
+        part.Color = Color3.new(0, 0, 0)
         part.Reflectance = 0
         part.CastShadow = false
     elseif part:IsA("Decal") or part:IsA("Texture") then
-        part:Destroy() -- remove textures
-    elseif part:IsA("ParticleEmitter") or part:IsA("Trail") then
-        part:Destroy() -- remove extra effects
+        part:Destroy()
+    elseif part:IsA("ParticleEmitter") or part:IsA("Trail") or part:IsA("Beam") then
+        part:Destroy()
+    elseif part:IsA("PointLight") or part:IsA("SpotLight") or part:IsA("SurfaceLight") then
+        part:Destroy()
+    elseif part:IsA("Smoke") or part:IsA("Fire") then
+        part:Destroy()
     end
 end
 
--- Apply to whole game:
 local function simplifyAll()
     for _, descendant in ipairs(workspace:GetDescendants()) do
         simplify(descendant)
     end
 end
 
--- Watch for new parts:
 workspace.DescendantAdded:Connect(simplify)
-
--- Run once at start:
 simplifyAll()
