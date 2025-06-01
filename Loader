@@ -1,7 +1,7 @@
 local function simplify(part)
     if part:IsA("BasePart") then
-        part.Material = Enum.Material.SmoothPlastic
-        part.Color = Color3.new(0, 0, 0)
+        part.Material = Enum.Material.Plastic
+        part.Color = Color3.fromRGB(0, 0, 0)
         part.Reflectance = 0
         part.CastShadow = false
     elseif part:IsA("Decal") or part:IsA("Texture") then
